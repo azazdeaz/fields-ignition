@@ -1,0 +1,22 @@
+<launch>
+    <arg name="pkg_name" default="grpc_bridge"
+        doc="Name of the new package" 
+    />
+    <arg name="pkgs_root" default=""
+        doc="Path to the new package. Defaults to {this_catkin_ws}/src" 
+    />
+    <arg name="snapshot_path" default=""
+        doc="Path to the snapshots file. Defaults to {generated_pkg}/snapshots.ini"
+    />
+    <arg name="keep_existing_snapshot" default="false"
+        doc="If true, if won't update the snapshots file"
+    />
+
+    <node name="gen" pkg="grpc_bridge_generator" type="generate">
+        <env name="ROS_NAMESPACE" value="gen" />
+        <param name="pkg_name" value="$(arg pkg_name)" />
+        <param name="pkgs_root" value="$(arg pkgs_root)" />
+        <param name="snapshot_path" value="$(arg snapshot_path)" />
+        <param name="keep_existing_snapshot" value="$(arg keep_existing_snapshot)" />
+    </node>
+</launch>

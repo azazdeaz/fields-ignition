@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# execute jupyter notebook
+
+# change the working dir to the one where the script is (scripts/)
+cd "${0%/*}" 
+
+# convert notebook to python script
+sudo jupyter nbconvert --to python --output tomato_gen.py tomato_gen.ipynb
+sed -i '1 s/^/#!\/usr\/bin\/env python\n/' tomato_gen.py
+
+# run with the given arguments
+python tomato_gen.py "$@"
