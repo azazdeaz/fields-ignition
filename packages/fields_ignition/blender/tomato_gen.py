@@ -59,7 +59,7 @@ markers = []
 
 def add_marker(location, type='FRUIT'):
     marker = {
-        'type': type,
+        'marker_type': type,
         'translation': [location[0], location[1], location[2]],
     }
     markers.append(marker)
@@ -80,6 +80,7 @@ for ob in bpy.context.selected_objects:
 
 bpy.ops.wm.collada_export(filepath=str(
     model_dir / 'meshes/tomato.dae'), check_existing=True, selected=True)
+
 with open(model_dir / 'markers.json', 'w') as outfile:
     json.dump(markers, outfile, indent=4)
 bpy.ops.object.delete(use_global=True)
