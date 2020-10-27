@@ -1,0 +1,12 @@
+{
+    "models": {
+        "list": [
+            {
+                "model": "model_name",
+                "name": "instance_name",
+                "pose": "0 0 0 0 0 0"
+            }
+        ]
+    },
+    "world_name": "tomato.world"
+}

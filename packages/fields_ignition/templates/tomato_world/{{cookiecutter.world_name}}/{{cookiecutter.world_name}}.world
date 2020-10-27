@@ -59,9 +59,17 @@
                         </plane>
                     </geometry>
                     <material>
-                        <ambient>0.8 0.8 0.8 1</ambient>
+                        <!-- <ambient>0.8 0.8 0.8 1</ambient>
                         <diffuse>0.8 0.8 0.8 1</diffuse>
-                        <specular>0.8 0.8 0.8 1</specular>
+                        <specular>0.8 0.8 0.8 1</specular> -->
+                        <diffuse>1.0 1.0 1.0</diffuse>
+                        <pbr>
+                            <metal>
+                                <albedo_map>file:///home/azazdeaz/repos/fields_ignition/src/packages/fields_ignition/templates/tomato_world/{{cookiecutter.world_name}}/textures/ground01/Stylized_Rocks_001_basecolor.jpg</albedo_map>
+                                <!-- <normal_map>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Cave Straight Type A/3/files/materials/textures/Gravel_Normal.png</normal_map>
+                                <roughness_map>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Cave Straight Type A/3/files/materials/textures/Gravel_Roughness.png</roughness_map> -->
+                            </metal>
+                        </pbr>
                     </material>
                     <plugin name='__default__' filename='__default__'/>
                 </visual>
@@ -69,12 +77,12 @@
             <plugin name='__default__' filename='__default__'/>
             <pose>0 0 0 0 -0 0</pose>
         </model>
+        {% for row in cookiecutter.models.list %}
         <include>
-            {% for (model, name, pose) in cookiecutter.models %}
-            <uri>{{ mode }}</uri>
-            <name>{{ name }}</name>
-            <pose>{{ pose }}</pose>
-            {% endfor %}
+            <uri>{{ row.model }}</uri>
+            <name>{{ row.name }}</name>
+            <pose>{{ row.pose }}</pose>
         </include>
+        {% endfor %}
     </world>
 </sdf>
