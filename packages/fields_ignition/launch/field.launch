@@ -1,0 +1,22 @@
+<launch>
+    <arg name="world_dir" default="$(find fields_ignition)/generated/test01/tomato_field" />
+    <arg name="use_rviz" default="True"
+        doc="publish visualization messages for rviz" 
+    />
+
+    <!-- <node name="scoring" pkg="fields_ignition" type="scoring">
+        <param name="world_dir" value="$(arg world_dir)" />
+        <param name="use_rviz" value="$(arg use_rviz)" />
+    </node> -->
+
+    <!-- <node name="ignition" pkg="ros_ign_gazebo" type="ign_gazebo" args="$(arg world_dir)/tomato_field.sdf">
+        <env name="IGN_GAZEBO_MODEL_PATH" value="$(arg world_dir)" />
+        <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg world_dir)" />
+    </node> -->
+    <include file="$(find ros_ign_gazebo)/launch/ign_gazebo.launch">
+        <env name="IGN_GAZEBO_MODEL_PATH" value="$(arg world_dir)" />
+        <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg world_dir)" />
+        <arg name="ign_args" value="-r -v 3 tomato_field.sdf"/>
+    </include>
+    
+</launch>
