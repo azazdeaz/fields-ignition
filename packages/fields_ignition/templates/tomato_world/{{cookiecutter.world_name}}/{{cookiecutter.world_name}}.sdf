@@ -34,49 +34,13 @@
         <gravity>0 0 -9.8</gravity>
         <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
         <atmosphere type='adiabatic'/>
-        <model name='ground_plane'>
-            <static>1</static>
-            <link name='link'>
-                <collision name='collision'>
-                    <geometry>
-                        <plane>
-                            <normal>0 0 1</normal>
-                            <size>1 1</size>
-                        </plane>
-                    </geometry>
-                    <surface>
-                        <friction>
-                            <ode/>
-                        </friction>
-                        <contact/>
-                    </surface>
-                </collision>
-                <visual name='visual'>
-                    <geometry>
-                        <plane>
-                            <normal>0 0 1</normal>
-                            <size>100 100</size>
-                        </plane>
-                    </geometry>
-                    <material>
-                        <!-- <ambient>0.8 0.8 0.8 1</ambient>
-                        <diffuse>0.8 0.8 0.8 1</diffuse>
-                        <specular>0.8 0.8 0.8 1</specular> -->
-                        <diffuse>1.0 1.0 1.0</diffuse>
-                        <pbr>
-                            <metal>
-                                <albedo_map>file:///home/azazdeaz/repos/fields_ignition/src/packages/fields_ignition/templates/tomato_world/{{cookiecutter.world_name}}/textures/ground01/Stylized_Rocks_001_basecolor.jpg</albedo_map>
-                                <!-- <normal_map>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Cave Straight Type A/3/files/materials/textures/Gravel_Normal.png</normal_map>
-                                <roughness_map>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Cave Straight Type A/3/files/materials/textures/Gravel_Roughness.png</roughness_map> -->
-                            </metal>
-                        </pbr>
-                    </material>
-                    <plugin name='__default__' filename='__default__'/>
-                </visual>
-            </link>
-            <plugin name='__default__' filename='__default__'/>
-            <pose>0 0 0 0 -0 0</pose>
-        </model>
+        
+        <include>
+            <uri>ground</uri>
+            <name>ground</name>
+            <pose>0.0 0.0 0 0 0 0</pose>
+        </include>
+
         {% for row in cookiecutter.models.list %}
         <include>
             <uri>{{ row.model }}</uri>
