@@ -18,5 +18,8 @@
         <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg world_dir)" />
         <arg name="ign_args" value="-r -v 3 tomato_field.sdf"/>
     </include>
+
+    <include file="$(find fields_ignition)/launch/husky_topics.launch" />
+    <include file="$(find fields_ignition)/launch/teleop_joy.launch" />
     
 </launch>

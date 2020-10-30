@@ -1,0 +1,11 @@
+<launch>
+    <arg name="cmd_vel" default="/costar_husky_sensor_config_1/cmd_vel" />
+    <arg name="teleop_config" default="$(find fields_ignition)/config/teleop_joy.yaml" />
+
+    <node pkg="joy" type="joy_node" name="joy_node" />
+
+    <rosparam file="$(arg teleop_config)" command="load" />
+    <node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop">
+        <remap from="cmd_vel" to="$(arg cmd_vel)" />
+    </node>
+</launch>

@@ -20,4 +20,8 @@
   <exec_depend>jupyter-notebook</exec_depend>
   <exec_depend>python3-papermill-pip</exec_depend>
   <depend>ros_ign_gazebo</depend>
+  <depend>ros_ign_bridge</depend>
+  <depend>ros_ign_image</depend>
+  <depend>joy</depend>
+  <depend>joy_teleop</depend>
 </package>

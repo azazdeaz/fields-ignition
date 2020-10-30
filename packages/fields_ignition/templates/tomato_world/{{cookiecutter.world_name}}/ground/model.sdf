@@ -5,6 +5,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
+            <scale>10 10 10</scale>
             <uri>file://ground/meshes/ground.dae</uri>
           </mesh>
         </geometry>

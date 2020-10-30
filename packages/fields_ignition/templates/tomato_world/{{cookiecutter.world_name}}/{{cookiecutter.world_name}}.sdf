@@ -1,5 +1,5 @@
 <sdf version='1.7'>
-    <world name='shapes'>
+    <world name='field'>
         <physics name='1ms' type='ignored'>
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1</real_time_factor>
@@ -48,5 +48,36 @@
             <pose>{{ row.pose }}</pose>
         </include>
         {% endfor %}
+
+        <include>
+            <pose>-1 -1 0 0 0 0</pose>
+            <uri>
+                https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/COSTAR_HUSKY_SENSOR_CONFIG_1
+            </uri>
+            <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+                <left_joint>front_left_wheel_joint</left_joint>
+                <left_joint>rear_left_wheel_joint</left_joint>
+                <right_joint>front_right_wheel_joint</right_joint>
+                <right_joint>rear_right_wheel_joint</right_joint>
+                <wheel_separation>0.684735</wheel_separation>
+                <wheel_radius>0.1651</wheel_radius>
+                <topic>/model/costar_husky_sensor_config_1/cmd_vel_relay</topic>
+                <min_velocity>-1</min_velocity>
+                <max_velocity>1</max_velocity>
+                <min_acceleration>-3</min_acceleration>
+                <max_acceleration>3</max_acceleration>
+            </plugin>
+
+            <plugin filename="libignition-gazebo-pose-publisher-system.so" name="ignition::gazebo::systems::PosePublisher">
+                <publish_link_pose>true</publish_link_pose>
+                <publish_sensor_pose>true</publish_sensor_pose>
+                <publish_collision_pose>false</publish_collision_pose>
+                <publish_visual_pose>false</publish_visual_pose>
+                <publish_nested_model_pose>true</publish_nested_model_pose>
+                <use_pose_vector_msg>true</use_pose_vector_msg>
+                <static_publisher>true</static_publisher>
+                <static_update_frequency>100</static_update_frequency>
+            </plugin>
+        </include>
     </world>
 </sdf>
