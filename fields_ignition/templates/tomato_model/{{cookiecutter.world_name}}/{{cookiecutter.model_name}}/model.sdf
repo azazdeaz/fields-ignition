@@ -4,9 +4,9 @@
     <link name="link">
       <collision name="collision">
         <geometry>
-          <mesh>
-            <uri>file://{{cookiecutter.model_name}}/meshes/tomato.dae</uri>
-          </mesh>
+          <box>
+            <size>.1 .1 1</size>
+          </box>
         </geometry>
       </collision>
       <visual name="branch">
