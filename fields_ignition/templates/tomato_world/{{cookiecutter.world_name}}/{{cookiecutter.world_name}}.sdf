@@ -8,6 +8,9 @@
         <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
         <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
         <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin>
         <scene>
             <ambient>1 1 1 1</ambient>
             <background>0.8 0.8 0.8 1</background>
@@ -38,7 +41,7 @@
         <include>
             <uri>ground</uri>
             <name>ground</name>
-            <pose>0.0 0.0 0 0 0 0</pose>
+            <pose>5.0 5.0 0 0 0 0</pose>
         </include>
 
         {% for row in cookiecutter.models.list %}

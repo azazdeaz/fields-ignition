@@ -1,0 +1,16 @@
+<launch>
+    <arg name="world_dir" default="$(find fields_ignition)/generated/test01/tomato_field" />
+    <arg name="use_rviz" default="True"
+        doc="publish visualization messages for rviz" 
+    />
+
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find fields_ignition)/tomato.rviz" if="$(arg use_rviz)"/>
+
+    <node name="ground_truth" pkg="fields_ignition" type="ground_truth.py" output="screen">
+        <param name="world_dir" value="$(arg world_dir)" />
+        <param name="use_rviz" value="$(arg use_rviz)" />
+    </node>
+
+    <node name="pose_tf_broadcaster" pkg="fields_ignition" type="pose_tf_broadcaster" output="screen">
+    </node>
+</launch>
