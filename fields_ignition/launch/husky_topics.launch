@@ -4,6 +4,14 @@
   <arg name="name" default="costar_husky_sensor_config_1"/>
   <arg name="link_name" value="base_link"/>
   <arg name="sensor_prefix" value="/world/$(arg world_name)/model/$(arg name)/link/$(arg link_name)/sensor"/>
+  
+  <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_pose"
+      args="/clock@rosgraph_msgs/Clock[ignition.msgs.Clock">
+    </node>
+  
   <group ns="$(arg name)">
     <!--Create multipe bridges so that it can run in parallel-->
     <node
