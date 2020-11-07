@@ -1,0 +1,217 @@
+<sdf version="1.6">
+  <model name="tomato_43">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>.1 .1 1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="branch">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Branch1</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15brn1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="leaf1">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Leaf1</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15lef1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="leaf2">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Leaf2</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15lef2.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="fruit1">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Fruit1</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15frt1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="fruit2">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Fruit2</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15frt2.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="fruit3">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Fruit3</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15frt3.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="fruit4">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Fruit4</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15frt4.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="blossom1">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Blossom1</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15blo1.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="blossom2">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Blossom2</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15blo2.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <visual name="blossom3">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Blossom3</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/AG15blo3.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <!-- <visual name="bark">
+        <geometry>
+          <mesh>
+            <uri>file://tomato_43/meshes/tomato.dae</uri>
+            <submesh>
+              <name>Bark</name>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>file://tomato_43/materials/scripts/</uri>
+            <uri>file://tomato_43/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+          <pbr>
+            <metal>
+              <albedo_map>file://tomato_43/materials/textures/bark_diffuse.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual> -->
+    </link>
+  </model>
+</sdf>

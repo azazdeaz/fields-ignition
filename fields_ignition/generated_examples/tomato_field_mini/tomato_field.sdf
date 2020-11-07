@@ -1,0 +1,104 @@
+<sdf version='1.7'>
+    <world name='field'>
+        <physics name='1ms' type='ignored'>
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1</real_time_factor>
+            <real_time_update_rate>1000</real_time_update_rate>
+        </physics>
+        <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
+        <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
+        <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin>
+        <scene>
+            <ambient>1 1 1 1</ambient>
+            <background>0.8 0.8 0.8 1</background>
+            <shadows>1</shadows>
+        </scene>
+        <light name='sun' type='directional'>
+            <cast_shadows>1</cast_shadows>
+            <pose>0 0 10 0 -0 0</pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+            <spot>
+                <inner_angle>0</inner_angle>
+                <outer_angle>0</outer_angle>
+                <falloff>0</falloff>
+            </spot>
+        </light>
+        <gravity>0 0 -9.8</gravity>
+        <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+        <atmosphere type='adiabatic'/>
+        
+        <include>
+            <uri>ground</uri>
+            <name>ground</name>
+            <pose>5.0 5.0 0 0 0 0</pose>
+        </include>
+
+        
+        <include>
+            <uri>tomato_0</uri>
+            <name>tomato_0</name>
+            <pose>0.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_1</uri>
+            <name>tomato_1</name>
+            <pose>0.0 0.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_2</uri>
+            <name>tomato_2</name>
+            <pose>2.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_3</uri>
+            <name>tomato_3</name>
+            <pose>2.0 0.9 0 0 0 0</pose>
+        </include>
+        
+
+        <include>
+            <pose>-1 -1 0 0 0 0</pose>
+            <uri>
+                https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/COSTAR_HUSKY_SENSOR_CONFIG_1
+            </uri>
+            <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+                <left_joint>front_left_wheel_joint</left_joint>
+                <left_joint>rear_left_wheel_joint</left_joint>
+                <right_joint>front_right_wheel_joint</right_joint>
+                <right_joint>rear_right_wheel_joint</right_joint>
+                <wheel_separation>0.684735</wheel_separation>
+                <wheel_radius>0.1651</wheel_radius>
+                <topic>/model/costar_husky_sensor_config_1/cmd_vel_relay</topic>
+                <min_velocity>-1</min_velocity>
+                <max_velocity>1</max_velocity>
+                <min_acceleration>-3</min_acceleration>
+                <max_acceleration>3</max_acceleration>
+            </plugin>
+
+            <plugin filename="libignition-gazebo-pose-publisher-system.so" name="ignition::gazebo::systems::PosePublisher">
+                <publish_link_pose>true</publish_link_pose>
+                <publish_sensor_pose>true</publish_sensor_pose>
+                <publish_collision_pose>false</publish_collision_pose>
+                <publish_visual_pose>false</publish_visual_pose>
+                <publish_nested_model_pose>true</publish_nested_model_pose>
+                <use_pose_vector_msg>true</use_pose_vector_msg>
+                <static_publisher>true</static_publisher>
+                <static_update_frequency>100</static_update_frequency>
+            </plugin>
+        </include>
+    </world>
+</sdf>

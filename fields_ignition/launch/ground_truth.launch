@@ -1,5 +1,5 @@
 <launch>
-    <arg name="world_dir" default="$(find fields_ignition)/generated/test01/tomato_field" />
+    <arg name="world_dir" default="$(find fields_ignition)/generated_examples/tomato_field" />
     <arg name="use_rviz" default="True"
         doc="publish visualization messages for rviz" 
     />

@@ -1,0 +1,368 @@
+<sdf version='1.7'>
+    <world name='field'>
+        <physics name='1ms' type='ignored'>
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1</real_time_factor>
+            <real_time_update_rate>1000</real_time_update_rate>
+        </physics>
+        <plugin name='ignition::gazebo::systems::Physics' filename='ignition-gazebo-physics-system'/>
+        <plugin name='ignition::gazebo::systems::UserCommands' filename='ignition-gazebo-user-commands-system'/>
+        <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='ignition-gazebo-scene-broadcaster-system'/>
+        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin>
+        <scene>
+            <ambient>1 1 1 1</ambient>
+            <background>0.8 0.8 0.8 1</background>
+            <shadows>1</shadows>
+        </scene>
+        <light name='sun' type='directional'>
+            <cast_shadows>1</cast_shadows>
+            <pose>0 0 10 0 -0 0</pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+            <spot>
+                <inner_angle>0</inner_angle>
+                <outer_angle>0</outer_angle>
+                <falloff>0</falloff>
+            </spot>
+        </light>
+        <gravity>0 0 -9.8</gravity>
+        <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+        <atmosphere type='adiabatic'/>
+        
+        <include>
+            <uri>ground</uri>
+            <name>ground</name>
+            <pose>5.0 5.0 0 0 0 0</pose>
+        </include>
+
+        
+        <include>
+            <uri>tomato_0</uri>
+            <name>tomato_0</name>
+            <pose>0.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_1</uri>
+            <name>tomato_1</name>
+            <pose>0.0 0.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_2</uri>
+            <name>tomato_2</name>
+            <pose>0.0 1.8 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_3</uri>
+            <name>tomato_3</name>
+            <pose>0.0 2.7 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_4</uri>
+            <name>tomato_4</name>
+            <pose>0.0 3.6 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_5</uri>
+            <name>tomato_5</name>
+            <pose>0.0 4.5 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_6</uri>
+            <name>tomato_6</name>
+            <pose>0.0 5.4 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_7</uri>
+            <name>tomato_7</name>
+            <pose>0.0 6.3 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_8</uri>
+            <name>tomato_8</name>
+            <pose>0.0 7.2 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_9</uri>
+            <name>tomato_9</name>
+            <pose>0.0 8.1 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_10</uri>
+            <name>tomato_10</name>
+            <pose>0.0 9.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_11</uri>
+            <name>tomato_11</name>
+            <pose>0.0 9.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_12</uri>
+            <name>tomato_12</name>
+            <pose>2.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_13</uri>
+            <name>tomato_13</name>
+            <pose>2.0 0.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_14</uri>
+            <name>tomato_14</name>
+            <pose>2.0 1.8 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_15</uri>
+            <name>tomato_15</name>
+            <pose>2.0 2.7 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_16</uri>
+            <name>tomato_16</name>
+            <pose>2.0 3.6 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_17</uri>
+            <name>tomato_17</name>
+            <pose>2.0 4.5 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_18</uri>
+            <name>tomato_18</name>
+            <pose>2.0 5.4 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_19</uri>
+            <name>tomato_19</name>
+            <pose>2.0 6.3 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_20</uri>
+            <name>tomato_20</name>
+            <pose>2.0 7.2 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_21</uri>
+            <name>tomato_21</name>
+            <pose>2.0 8.1 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_22</uri>
+            <name>tomato_22</name>
+            <pose>2.0 9.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_23</uri>
+            <name>tomato_23</name>
+            <pose>2.0 9.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_24</uri>
+            <name>tomato_24</name>
+            <pose>4.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_25</uri>
+            <name>tomato_25</name>
+            <pose>4.0 0.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_26</uri>
+            <name>tomato_26</name>
+            <pose>4.0 1.8 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_27</uri>
+            <name>tomato_27</name>
+            <pose>4.0 2.7 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_28</uri>
+            <name>tomato_28</name>
+            <pose>4.0 3.6 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_29</uri>
+            <name>tomato_29</name>
+            <pose>4.0 4.5 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_30</uri>
+            <name>tomato_30</name>
+            <pose>4.0 5.4 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_31</uri>
+            <name>tomato_31</name>
+            <pose>4.0 6.3 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_32</uri>
+            <name>tomato_32</name>
+            <pose>4.0 7.2 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_33</uri>
+            <name>tomato_33</name>
+            <pose>4.0 8.1 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_34</uri>
+            <name>tomato_34</name>
+            <pose>4.0 9.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_35</uri>
+            <name>tomato_35</name>
+            <pose>4.0 9.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_36</uri>
+            <name>tomato_36</name>
+            <pose>6.0 0.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_37</uri>
+            <name>tomato_37</name>
+            <pose>6.0 0.9 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_38</uri>
+            <name>tomato_38</name>
+            <pose>6.0 1.8 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_39</uri>
+            <name>tomato_39</name>
+            <pose>6.0 2.7 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_40</uri>
+            <name>tomato_40</name>
+            <pose>6.0 3.6 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_41</uri>
+            <name>tomato_41</name>
+            <pose>6.0 4.5 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_42</uri>
+            <name>tomato_42</name>
+            <pose>6.0 5.4 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_43</uri>
+            <name>tomato_43</name>
+            <pose>6.0 6.3 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_44</uri>
+            <name>tomato_44</name>
+            <pose>6.0 7.2 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_45</uri>
+            <name>tomato_45</name>
+            <pose>6.0 8.1 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_46</uri>
+            <name>tomato_46</name>
+            <pose>6.0 9.0 0 0 0 0</pose>
+        </include>
+        
+        <include>
+            <uri>tomato_47</uri>
+            <name>tomato_47</name>
+            <pose>6.0 9.9 0 0 0 0</pose>
+        </include>
+        
+
+        <include>
+            <pose>-1 -1 0 0 0 0</pose>
+            <uri>
+                https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/COSTAR_HUSKY_SENSOR_CONFIG_1
+            </uri>
+            <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+                <left_joint>front_left_wheel_joint</left_joint>
+                <left_joint>rear_left_wheel_joint</left_joint>
+                <right_joint>front_right_wheel_joint</right_joint>
+                <right_joint>rear_right_wheel_joint</right_joint>
+                <wheel_separation>0.684735</wheel_separation>
+                <wheel_radius>0.1651</wheel_radius>
+                <topic>/model/costar_husky_sensor_config_1/cmd_vel_relay</topic>
+                <min_velocity>-1</min_velocity>
+                <max_velocity>1</max_velocity>
+                <min_acceleration>-3</min_acceleration>
+                <max_acceleration>3</max_acceleration>
+            </plugin>
+
+            <plugin filename="libignition-gazebo-pose-publisher-system.so" name="ignition::gazebo::systems::PosePublisher">
+                <publish_link_pose>true</publish_link_pose>
+                <publish_sensor_pose>true</publish_sensor_pose>
+                <publish_collision_pose>false</publish_collision_pose>
+                <publish_visual_pose>false</publish_visual_pose>
+                <publish_nested_model_pose>true</publish_nested_model_pose>
+                <use_pose_vector_msg>true</use_pose_vector_msg>
+                <static_publisher>true</static_publisher>
+                <static_update_frequency>100</static_update_frequency>
+            </plugin>
+        </include>
+    </world>
+</sdf>
