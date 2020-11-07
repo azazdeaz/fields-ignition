@@ -1,13 +1,13 @@
 # fields-ignition 
 ### *random crop field generator for Ignition Gazebo*
 
-[](images/demo.gif)
+![](images/demo.gif)
 
 :construction: work in progress
 
  - [How it works?](#how-it-works)
- - [Notes](#notes)
- - [Install](#install)
+ - [Run in a catkin workspace](#run-in-a-catkin-workspace)
+ - [Run with Docker](#run-with-docker)
 
 ## How it works?
  TODO
