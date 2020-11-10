@@ -95,9 +95,6 @@ def gen_main_stem(collection):
     #Define mesh and object
     mesh = bpy.data.meshes.new("Branch1")
 
-    #Set location and scene of object
-    #bpy.context.scene.objects.link(object)
-
     #Create mesh
     mesh.from_pydata(verts, [], faces)
     mesh.update(calc_edges=True)
@@ -115,55 +112,75 @@ def gen_main_stem(collection):
 
 # Generate leaf, fruit, and flower formations
 
-def select_objects(object_name, ob_pool):
-    ob_merged = None
-    ob_fruits = []
+# def select_objects(object_name, ob_pool):
+#     ob_merged = None
+#     ob_fruits = []
 
-    def is_match(ob):
-        return ob.name.split('.')[0] == object_name
+#     def is_match(ob):
+#         return ob.name == object_name or ob.name.startswith(object_name + '.')
 
-    for ob in ob_pool:
-        if is_match(ob):
-            ob_merged = ob
-        elif ob.parent is not None and is_match(ob.parent):
-            if ob.name.startswith('pose_fruit'):
-                ob_fruits.append(ob)
-    if ob_merged is None:
-        raise LookupError(
-            'Can\'t find object with name "{}"'.format(object_name))
-    return ob_merged, ob_fruits
+#     for ob in ob_pool:
+#         if is_match(ob):
+#             ob_merged = ob
+#         elif ob.parent is not None and is_match(ob.parent):
+#             if ob.name.startswith('pose_fruit'):
+#                 ob_fruits.append(ob)
+#     if ob_merged is None:
+#         raise LookupError(
+#             'Can\'t find object with name "{}"'.format(object_name))
+#     return ob_merged, ob_fruits
 
+def filter_prefix(objects, prefix):
+    return list(
+        filter(lambda ob: ob.name.startswith(prefix), objects))
 
-def gen_end_stem(collection, object_name, location=None, yaw=None):
+class PrebuiltMeshes:
+    def __init__(self):
+        objects = bpy.data.collections['sub_branches'].all_objects
+        self.sub_branches = filter_prefix(objects, 'b_')
+        self.sub_branch_heights = np.array(
+            list(map(lambda ob: ob.location[2], self.sub_branches)))
+
+    def get_end_stem_mesh(self, z):
+        idx_options = np.argsort(np.abs(self.sub_branch_heights-z))[:5]
+        return self.sub_branches[np.random.choice(idx_options)]
+prebuilt_meshes = PrebuiltMeshes()
+
+def gen_end_stem(collection, location: (float, float, float), yaw=None):
     coll_sub_branches = bpy.data.collections['sub_branches']
-    ob_merged, ob_fruits = select_objects(
-        object_name, coll_sub_branches.all_objects)
-    print('ob_merged', ob_merged, ob_merged.type)
+    ob_stem = prebuilt_meshes.get_end_stem_mesh(location[2])
+    print('ob_stem', ob_stem, ob_stem.type)
+    object_name = ob_stem.name
+    # TODO select markers from ob children
+    ob_fruits = filter_prefix(ob_stem.children, 'pose_fruit')
+    print('ob_fruits', ob_fruits)
+    # ob_stem, ob_fruits = select_objects(object_name, sub_branches)
     bpy.ops.object.select_all(action='DESELECT')
     bpy.ops.object.duplicate({
-        'selected_objects': [ob_merged] + ob_fruits,
-        'active_object': ob_merged
+        'selected_objects': [ob_stem] + ob_fruits,
+        'active_object': ob_stem
     })
-    ob_merged, ob_fruits = select_objects(
-        object_name, bpy.context.selected_objects)
-    ob_merged.select_set(False)
+    ob_stem = filter_prefix(bpy.context.selected_objects, 'b_')[0]
+    ob_fruits = filter_prefix(ob_stem.children, 'pose_fruit')
+    
+    ob_stem.select_set(False)
     if location is not None:
-        ob_merged.location = location
+        ob_stem.location = location
     if yaw is not None:
-        ob_merged.rotation_euler[2] = yaw
+        ob_stem.rotation_euler[2] = yaw
 
-    collection.objects.link(ob_merged)
-    coll_sub_branches.objects.unlink(ob_merged)
+    collection.objects.link(ob_stem)
+    coll_sub_branches.objects.unlink(ob_stem)
     for ob in ob_fruits:
         collection.objects.link(ob)
         coll_sub_branches.objects.unlink(ob)
 
-    return ob_merged, ob_fruits
+    return ob_stem, ob_fruits
 
 
 
 
-def gen_plant():
+def gen_plant(write_result=False):
     collection = bpy.data.collections.new('new_plant')
     bpy.context.scene.collection.children.link(collection)
 
@@ -174,8 +191,7 @@ def gen_plant():
 
     for node in nodes:
         mesh_name = 'b_0' if np.random.random_sample() > .5 else 'b_1'
-        ob_m, ob_f = gen_end_stem(collection, mesh_name,
-                                (node.x, node.y, node.z), node.alpha)
+        ob_m, ob_f = gen_end_stem(collection, (node.x, node.y, node.z), node.alpha)
         ob_meshes.append(ob_m)
         ob_fruits += ob_f
 
@@ -184,7 +200,7 @@ def gen_plant():
 
     def add_marker(location, type='FRUIT'):
         marker = {
-            'type': type,
+            'marker_type': type,
             'translation': [location[0], location[1], location[2]],
         }
         markers.append(marker)
@@ -217,12 +233,24 @@ def gen_plant():
         # select for the export
         ob.select_set(True)
 
-    bpy.ops.wm.collada_export(filepath=str(
-        model_dir / 'meshes/tomato.dae'), check_existing=True, selected=True)
+    if write_result:
+        bpy.ops.wm.collada_export(filepath=str(
+            model_dir / 'meshes/tomato.dae'), check_existing=True, selected=True)
 
-    with open(model_dir / 'markers.json', 'w') as outfile:
-        json.dump(markers, outfile, indent=4)
-    bpy.ops.object.delete(use_global=True)
+        with open(model_dir / 'markers.json', 'w') as outfile:
+            json.dump(markers, outfile, indent=4)
+        bpy.ops.object.delete(use_global=True)
+
+    return collection
 
 if __name__ == '__main__':
-    gen_plant()
+    gen_plant(write_result=True)
+
+# if __name__ == '__main__':
+#     if 'test_copy' in bpy.data.collections:
+#         collection = bpy.data.collections['test_copy']
+#     else:
+#         collection = bpy.data.collections.new('test_copy')
+#         bpy.context.scene.collection.children.link(collection)
+
+#     print(gen_end_stem(collection, (0, 0, 0), 1.0))
