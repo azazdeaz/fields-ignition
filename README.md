@@ -5,12 +5,24 @@
 
 :construction: work in progress
 
- - [How it works?](#how-it-works)
+ - [What's this?](#whats-this)
+ - [Notes](#notes)
  - [Run in a catkin workspace](#run-in-a-catkin-workspace)
  - [Run with Docker](#run-with-docker)
 
-## How it works?
- TODO
+## What's this?
+I was wondering how complicated would it be to generate random test environments for agricultural robots. Turned out with great tools like the Blender python API, and Ignition Gazebo it can be a fun and straightforward process :tada:
+
+This repo contains:
+ - [Blender script](fields_ignition/blender/tomato_gen.py) that generates individual tomato crops
+ - [Jupyter notebook](fields_ignition/scripts/tomato_gen.ipynb) for building the SDF models and the world description
+ - [ROS node](fields_ignition/scripts/ground_truth.py) that visualizes the ground truth data in RViz
+ - [Dockerfile](Dockerfile) for running a simulation
+
+## Notes
+ - The generated results are reproducible by specifying the seed value
+ - Each model has a markers.json listing the position of the fruits relative to the crop
+ - Also, the world folder has a markers.json listing all the plant and fruit positions relative to the world origin
 
 ## Run in a catkin workspace
 *requires ROS Noetic and Ignition Dome*
@@ -23,7 +35,7 @@
 ### Run the simulation
  - run an example world: `roslaunch fields_ignition field.launch world_dir:=$(rospack find fields_ignition)/generated_examples/tomato_field`
  - visualize the ground truth data with rviz: `roslaunch fields_ignition ground_truth.launch world_dir:=$(rospack find fields_ignition)/generated_examples/tomato_field`
- - 
+  
 ### Generate a new tomato field
  - start the notebook `rosrun fields_ignition tomato_gen_notebook`
  - modify the parameters in the second cell and run the notebook
