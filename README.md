@@ -17,7 +17,7 @@ This repo contains:
  - [Blender script](fields_ignition/blender/tomato_gen.py) that generates individual tomato crops
  - [Jupyter notebook](fields_ignition/scripts/tomato_gen.ipynb) for building the SDF models and the world description
  - [ROS node](fields_ignition/scripts/ground_truth.py) that visualizes the ground truth data in RViz
- - [Dockerfile](Dockerfile) for running a simulation
+ - [Dockerfile](Dockerfile) for running the simulations
 
 ## Notes
  - The generated results are reproducible by specifying the seed value
