@@ -25,6 +25,8 @@ This repo contains:
  - Each model has a markers.json listing the position of the fruits relative to the crop
  - Also, the world folder has a markers.json listing all the plant and fruit positions relative to the world origin
 
+![random tomato crops in Blender](images/tomatoes.gif)
+
 ## Run in a catkin workspace
 *requires ROS Noetic and Ignition Dome*
 
