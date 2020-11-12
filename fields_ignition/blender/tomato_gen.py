@@ -9,7 +9,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--model_dir', dest='model_dir',
                     default='generated/test_tomato')
-parser.add_argument('-s', '--seed', dest='seed', type=int, default=81226)
+parser.add_argument('-s', '--seed', dest='seed', type=int, default=np.random.randint(10000))
 
 
 if '--' in sys.argv:
@@ -122,7 +122,7 @@ class PrebuiltMeshes:
         self.sub_stems = filter_prefix(objects, 'b_')
 
     def get_end_stem_mesh(self, growth):
-        groups = ['b_04', 'b_05', 'b_06']
+        groups = ['b_04', 'b_05', 'b_06', 'b_08' ]
         prefix = groups[np.random.choice(len(groups))]
         stems = filter_prefix(self.sub_stems, prefix)
         growths = np.array(list(map(lambda ob: ob.location[2], stems)))

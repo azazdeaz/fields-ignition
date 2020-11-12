@@ -18,6 +18,7 @@ This repo contains:
  - [Jupyter notebook](fields_ignition/scripts/tomato_gen.ipynb) for building the SDF models and the world description
  - [ROS node](fields_ignition/scripts/ground_truth.py) that visualizes the ground truth data in RViz
  - [Dockerfile](Dockerfile) for running the simulations
+ - [Example worlds](fields_ignition/generated_examples) generated with this tool
 
 ## Notes
  - The generated results are reproducible by specifying the seed value
