@@ -31,12 +31,20 @@ model_dir.mkdir(parents=True, exist_ok=True)
 # Generate the main structure
 
 class Node:
-    def __init__(self, x, y, z, alpha, r):
+    def __init__(self, x, y, z, yaw, r):
         self.x = x
         self.y = y
         self.z = z
-        self.alpha = alpha
+        self.yaw = yaw
         self.r = r
+
+
+def gen_node_heights(height: float, node_count: int):
+    sample_count = 8
+    samples = np.array([np.concatenate([np.sort(np.random.uniform(
+        0.005, height, node_count)), [height]]) for _ in range(sample_count)])
+    max_distances = np.max(samples[:, 1:] - samples[:, :-1], axis=1)
+    return samples[np.argmin(max_distances)]
 
 
 def gen_main_stem(collection):
@@ -51,16 +59,15 @@ def gen_main_stem(collection):
 
     # create the nodes from bottom-up
     nodes = [Node(0, 0, 0, 0, r_start)]
-    node_heights = list(np.sort(np.random.uniform(
-        0.005, height, node_count))) + [height]
+    node_heights = gen_node_heights(height, node_count)
     for z in node_heights:
         prev = nodes[-1]
-        alpha = prev.alpha + (np.pi * (2.0/3.0) + np.random.normal(0, 0.4))
+        yaw = prev.yaw + (np.pi * (2.0/3.0) + np.random.normal(0, 0.4))
         step_up = z - prev.z
-        y = np.sin(alpha) * (step_up/15.0)
-        x = np.cos(alpha) * (step_up/15.0)
+        y = np.sin(yaw) * (step_up/15.0)
+        x = np.cos(yaw) * (step_up/15.0)
         r = r_start - (r_start-r_end) * (z / height)
-        nodes.append(Node(x, y, z, alpha, r))
+        nodes.append(Node(x, y, z, yaw, r))
 
     def create_ring_verts(node):
         verts = []
@@ -128,9 +135,7 @@ class PrebuiltMeshes:
         growths = np.array(list(map(lambda ob: ob.location[2], stems)))
         growths = growths / np.max(growths)
         idx_options = np.argsort(np.abs(growths - growth))[:5]
-        ob = stems[np.random.choice(idx_options)]
-        print(ob.name, growth)
-        return ob
+        return stems[np.random.choice(idx_options)]
 prebuilt_meshes = PrebuiltMeshes()
 
 def gen_end_stem(collection, location: (float, float, float), yaw: float, growth: float):
@@ -162,7 +167,7 @@ def gen_end_stem(collection, location: (float, float, float), yaw: float, growth
 
 
 
-def gen_plant(write_result=False):
+def gen_plant(write_results=False, keep_materials=False):
     collection = bpy.data.collections.new('new_plant')
     bpy.context.scene.collection.children.link(collection)
 
@@ -175,7 +180,7 @@ def gen_plant(write_result=False):
         ob_m, ob_f = gen_end_stem(
             collection, 
             location = (node.x, node.y, node.z), 
-            yaw = node.alpha,
+            yaw = node.yaw,
             growth = node.z / nodes[-1].z)
         ob_meshes.append(ob_m)
         ob_fruits += ob_f
@@ -214,11 +219,12 @@ def gen_plant(write_result=False):
         # name the mesh
         ob.name = ob.material_slots[0].material.name
         # remove the material (it will be added in the SDF file)
-        ob.data.materials.clear()
+        if not keep_materials:
+            ob.data.materials.clear()
         # select for the export
         ob.select_set(True)
 
-    if write_result:
+    if write_results:
         bpy.ops.wm.collada_export(filepath=str(
             model_dir / 'meshes/tomato.dae'), check_existing=True, selected=True)
 
@@ -229,7 +235,7 @@ def gen_plant(write_result=False):
     return collection
 
 if __name__ == '__main__':
-    gen_plant(write_result=True)
+    gen_plant(write_results=True)
 
 # if __name__ == '__main__':
 #     if 'test_copy' in bpy.data.collections:

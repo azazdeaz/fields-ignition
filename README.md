@@ -27,7 +27,7 @@ This repo contains:
 
 ![random tomato crops in Blender](images/tomatoes.gif)
 
-## Run in a catkin workspace
+## Run in a Catkin workspace
 *requires ROS Noetic and Ignition Dome*
 
 ### Install
